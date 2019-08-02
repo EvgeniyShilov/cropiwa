@@ -32,11 +32,15 @@ public class CropArea {
     }
 
     public Bitmap applyCropTo(Bitmap bitmap) {
-        Bitmap immutableCropped = Bitmap.createBitmap(bitmap,
-                findRealCoordinate(bitmap.getWidth(), cropRect.left, imageRect.width()),
-                findRealCoordinate(bitmap.getHeight(), cropRect.top, imageRect.height()),
-                findRealCoordinate(bitmap.getWidth(), cropRect.width(), imageRect.width()),
-                findRealCoordinate(bitmap.getHeight(), cropRect.height(), imageRect.height()));
+        int x = findRealCoordinate(bitmap.getWidth(), cropRect.left, imageRect.width());
+        int y = findRealCoordinate(bitmap.getHeight(), cropRect.top, imageRect.height());
+        int width = findRealCoordinate(bitmap.getWidth(), cropRect.width(), imageRect.width());
+        int height = findRealCoordinate(bitmap.getHeight(), cropRect.height(), imageRect.height());
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
+        if (x + width > bitmap.getWidth()) width = bitmap.getWidth() - x;
+        if (y + height > bitmap.getHeight()) height = bitmap.getHeight() - y;
+        Bitmap immutableCropped = Bitmap.createBitmap(bitmap, x, y, width, height);
         return immutableCropped.copy(immutableCropped.getConfig(), true);
     }
 
