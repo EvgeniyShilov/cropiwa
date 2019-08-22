@@ -15,6 +15,7 @@ public class CropIwaSaveConfig {
     private Bitmap.CompressFormat compressFormat;
     private int quality;
     private int width, height;
+    private boolean maskEnabled;
     private Uri dstUri;
 
     public CropIwaSaveConfig(Uri dstPath) {
@@ -23,6 +24,7 @@ public class CropIwaSaveConfig {
         this.width = CropIwaBitmapManager.SIZE_UNSPECIFIED;
         this.height = CropIwaBitmapManager.SIZE_UNSPECIFIED;
         this.quality = 90;
+        this.maskEnabled = true;
     }
 
     public Bitmap.CompressFormat getCompressFormat() {
@@ -39,6 +41,10 @@ public class CropIwaSaveConfig {
 
     public int getHeight() {
         return height;
+    }
+
+    public boolean isMaskEnabled() {
+        return maskEnabled;
     }
 
     public Uri getDstUri() {
@@ -66,6 +72,11 @@ public class CropIwaSaveConfig {
 
         public Builder setQuality(@IntRange(from = 0, to = 100) int quality) {
             saveConfig.quality = quality;
+            return this;
+        }
+
+        public Builder setMaskEnabled(boolean maskEnabled) {
+            saveConfig.maskEnabled = maskEnabled;
             return this;
         }
 
