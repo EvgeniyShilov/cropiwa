@@ -39,10 +39,10 @@ public class CropArea {
         width = Math.min(width, bitmap.getWidth());
         height = Math.min(height, bitmap.getHeight());
         final float aspectRatio = (float) cropRect.width() / (float) cropRect.height();
-        final int tempWidth = (int) (aspectRatio * height);
-        final int tempHeight = (int) (width / aspectRatio);
-        width = Math.min(width, tempWidth);
-        height = Math.min(height, tempHeight);
+        final int tempWidth = (int) (aspectRatio * (float) height);
+        final int tempHeight = (int) ((float) width / aspectRatio);
+        width = Math.min(width, Math.min(tempWidth, bitmap.getWidth()));
+        height = Math.min(height, Math.min(tempHeight, bitmap.getHeight()));
         x = Math.max(x, 0);
         y = Math.max(y, 0);
         if (x + width > bitmap.getWidth()) x = bitmap.getWidth() - width;
