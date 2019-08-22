@@ -11,16 +11,16 @@ The library is a highly configurable widget for image cropping.
 Add this to your Gradle files.
 ```
     //To project build.gradle file
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+        }
+    }
 
-	//To module build.gradle file
+    //To module build.gradle file
     dependencies {
-            implementation 'com.github.EvgeniyShilov:cropiwa:1.0.4'
+        implementation 'com.github.EvgeniyShilov:cropiwa:1.0.4'
     }
 ```
 ## Sample
