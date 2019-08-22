@@ -36,10 +36,12 @@ public class CropArea {
         int y = findRealCoordinate(bitmap.getHeight(), cropRect.top, imageRect.height());
         int width = findRealCoordinate(bitmap.getWidth(), cropRect.width(), imageRect.width());
         int height = findRealCoordinate(bitmap.getHeight(), cropRect.height(), imageRect.height());
-        if (x < 0) x = 0;
-        if (y < 0) y = 0;
-        if (x + width > bitmap.getWidth()) width = bitmap.getWidth() - x;
-        if (y + height > bitmap.getHeight()) height = bitmap.getHeight() - y;
+        width = Math.min(width, bitmap.getWidth());
+        height = Math.min(height, bitmap.getHeight());
+        x = Math.max(x, 0);
+        y = Math.max(y, 0);
+        if (x + width > bitmap.getWidth()) x = bitmap.getWidth() - width;
+        if (y + height > bitmap.getHeight()) y = bitmap.getHeight() - height;
         Bitmap immutableCropped = Bitmap.createBitmap(bitmap, x, y, width, height);
         return immutableCropped.copy(immutableCropped.getConfig(), true);
     }
