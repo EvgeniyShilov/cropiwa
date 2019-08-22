@@ -1,6 +1,5 @@
 # CropIwa
 
-
 [![Made in SteelKiwi](https://github.com/steelkiwi/Getting-started-with-Kotlin/blob/master/made_in_steelkiwi.png)](http://steelkiwi.com/blog/)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CropIwa-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5511)
 
@@ -9,9 +8,20 @@ The library is a highly configurable widget for image cropping.
 ![GifSample1](https://github.com/polyak01/cropiwa/blob/master/assets/3J8gYWC.gif)
 
 ## Gradle 
-Add this into your dependencies block.
+Add this to your Gradle files.
 ```
-compile 'com.steelkiwi:cropiwa:1.0.3'
+    //To project build.gradle file
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+	//To module build.gradle file
+    dependencies {
+            implementation 'com.github.EvgeniyShilov:cropiwa:1.0.4'
+    }
 ```
 ## Sample
 Please see the [sample app](sample/src/main/java/com/steelkiwi/cropiwa/sample) for library usage examples.
@@ -37,6 +47,7 @@ cropView.crop(new CropIwaSaveConfig.Builder(destinationUri)
   .setCompressFormat(Bitmap.CompressFormat.PNG)
   .setSize(outWidth, outHeight) //Optional. If not specified, SRC dimensions will be used
   .setQuality(100) //Hint for lossy compression formats
+  .setMaskEnabled(false) //You can disable mask applying to cropped image. Default value is true
   .build());
 ```
 ### Callbacks
